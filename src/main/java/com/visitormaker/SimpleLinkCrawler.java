@@ -1,3 +1,5 @@
+package com.visitormaker;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,13 +14,13 @@ public class SimpleLinkCrawler {
     private static final Set<String> visitedUrls = new HashSet<>();
 
     public static void main(String[] args) {
-        String startUrl = "https://example.com"; // Replace with your starting URL
+        String startUrl = "https://lrytas.lt";
         crawl(startUrl);
     }
 
     private static void crawl(String url) {
         if (visitedUrls.contains(url)) {
-            return; // avoid visiting same link again
+            return;
         }
 
         visitedUrls.add(url);
@@ -27,15 +29,14 @@ public class SimpleLinkCrawler {
             System.out.println("Visiting: " + url);
             Document doc = Jsoup.connect(url).userAgent("Mozilla").get();
 
-            // Find the first valid <a href> link
             Elements links = doc.select("a[href]");
             for (Element link : links) {
-                String nextUrl = link.absUrl("href"); // get absolute URL
+                String nextUrl = link.absUrl("href");
 
                 if (!nextUrl.isEmpty() && !visitedUrls.contains(nextUrl)) {
                     System.out.println("Found link: " + nextUrl);
-                    crawl(nextUrl); // recursive call
-                    break; // move only to the first found link
+                    crawl(nextUrl);
+                    break;
                 }
             }
 

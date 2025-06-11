@@ -4,7 +4,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +13,7 @@ public class SimpleLinkCrawler {
     private static final Set<String> visitedUrls = new HashSet<>();
 
     public static void main(String[] args) {
-        String startUrl = "https://lrytas.lt";
+        String startUrl = "https://vpnhead.com";
         crawl(startUrl);
     }
 
